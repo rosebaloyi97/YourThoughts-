@@ -25,9 +25,30 @@ exports.NewDiary=(req, res)=>{
 }
 
 exports.DeleteDiary = (req , res)=>{
-    database.query('DELETE FROM newDiary WHERE diary_id = :diary_id ', (err, rows , fields)=>{
+    
+    database.query('DELETE FROM newDiary WHERE diary_id =?', [req.params.diary_id], (err, rows , fields)=>{
         if(!err){
             res.json(rows);
+        }else{
+            throw err;
+        }
+    })
+}
+
+exports.UpdateDiaryTopic=(req, res)=>{
+    database.query('Update newDiary SET topic = ? WHERE diary_id =?', [req.body.topic, req.params.diary_id], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows)
+        }else{
+            throw err
+        }
+    });
+}
+
+exports.EditDiaryMessage =(req, res)=>{
+    database.query('Update newDiary SET message =? WHERE diary_id= ?', [req.body.message, req.params.diary_id], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows)
         }else{
             throw err;
         }

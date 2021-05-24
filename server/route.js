@@ -9,7 +9,12 @@ route.get("/AllDiaries", controller.GetAllPost);
 route.post("/NewDiary", controller.NewDiary);
 
 //delete diary
-route.delete("/deleteDiary/:id", controller.DeleteDiary);
+route.delete("/deleteDiary/:diary_id", controller.DeleteDiary);
 
+//edit diary topic
+route.put("/editTopic/:diary_id", controller.UpdateDiaryTopic);
+
+//edit diary message
+route.put("/editMessage/:diary_id", controller.EditDiaryMessage);
 
 module.exports =route;

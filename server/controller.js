@@ -24,6 +24,7 @@ exports.NewDiary=(req, res)=>{
     });
 }
 
+//deleting a diary
 exports.DeleteDiary = (req , res)=>{
     
     database.query('DELETE FROM newDiary WHERE diary_id =?', [req.params.diary_id], (err, rows , fields)=>{
@@ -35,6 +36,7 @@ exports.DeleteDiary = (req , res)=>{
     })
 }
 
+//updating a diary's topic
 exports.UpdateDiaryTopic=(req, res)=>{
     database.query('Update newDiary SET topic = ? WHERE diary_id =?', [req.body.topic, req.params.diary_id], (err, rows, fields)=>{
         if(!err){
@@ -45,6 +47,7 @@ exports.UpdateDiaryTopic=(req, res)=>{
     });
 }
 
+//updating a diary's message
 exports.EditDiaryMessage =(req, res)=>{
     database.query('Update newDiary SET message =? WHERE diary_id= ?', [req.body.message, req.params.diary_id], (err, rows, fields)=>{
         if(!err){
